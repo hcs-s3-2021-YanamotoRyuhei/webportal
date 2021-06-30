@@ -72,7 +72,7 @@
 			<p>(詳細)</p>
 			<!-- 基本1件だが、API構造に従い繰り返し構文とする -->
 			<ul th:each="forecast : ${weatherEntity.forecasts}">
-				<li><h4><span th:text="*{forecast.dataLabel}"></span></h4></li>
+				<li><h4><span th:text="*{forecast.dateLabel}"></span></h4></li>
 				<li><span th:text="*{forecast.Telop}"></span>
 			</ul>
 		</div>
