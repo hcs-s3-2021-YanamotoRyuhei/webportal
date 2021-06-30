@@ -30,4 +30,5 @@ public class ZipCodeData {
 	
 	/**町域名カナ*/
 	private String kana3;
+	
 }

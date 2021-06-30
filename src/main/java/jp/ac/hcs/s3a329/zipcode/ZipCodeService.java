@@ -47,6 +47,7 @@ public class ZipCodeService {
 			//statusパラメータの抽出
 			String status = node.get("status").asText();
 			zipCodeEntity.setStatus(status);
+
 			//messageパラメータの抽出
 			String message = node.get("message").asText();
 			zipCodeEntity.setMessage(message);
@@ -71,6 +72,7 @@ public class ZipCodeService {
 		}catch (IOException e) {
 			//例外発生時は、エラーメッセージの詳細を標準エラー出力
 			e.printStackTrace();
+
 		}
 		return zipCodeEntity;
 	}

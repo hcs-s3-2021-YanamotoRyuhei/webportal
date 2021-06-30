@@ -68,17 +68,12 @@
 	<!-- コンテンツ -->
 	<div class="container">
 		<div class="content-box">
-			<h1>住所検索画面</h1>
-			<h2>郵便番号</h2>
-			<h3>検索結果</h3>
-			<div id="error"></div>
+			<h1>札幌の天気予報</h1>
+			<p>(詳細)</p>
 			<!-- 基本1件だが、API構造に従い繰り返し構文とする -->
-			<ul th:each="result : ${zipCodeEntity.results}" th:object="${result}">
-				<li><span th:text="*{zipcode}" id="test"></span></li>
-				<li><span th:text="*{address1}"></span> <span
-					th:text="*{address2}"></span> <span th:text="*{address3}"></span></li>
-				<li><span th:text="*{kana1}"></span> <span th:text="*{kana2}"></span>
-					<span th:text="*{kana3}"></span></li>
+			<ul th:each="forecast : ${weatherEntity.forecasts}">
+				<li><h4><span th:text="*{forecast.dataLabel}"></span></h4></li>
+				<li><span th:text="*{forecast.Telop}"></span>
 			</ul>
 		</div>
 	</div>
@@ -95,12 +90,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	<script>
-		var zipcode = document.getElementById("test");
-		if(zipcode == null || zipcode == ''){
-			var text = document.getElementById("error");
-			text.innerHTML ="条件に該当する住所は見つかりませんでした。"
-		}
-	</script>
+	
 </body>
 </html>

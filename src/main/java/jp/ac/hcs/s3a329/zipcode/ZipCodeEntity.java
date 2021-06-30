@@ -20,6 +20,7 @@ public class ZipCodeEntity {
 	/**メッセージ*/
 	private String message;
 	
+	
 	/**郵便番号情報のリスト*/
 	private List<ZipCodeData> results = new ArrayList<ZipCodeData>();
 }
