@@ -46,8 +46,8 @@ public class WeatherService {
 			
 			//weatherEntity.getDescription().add(node.get("description"));
 			//JsonNode description = node.get("description");
-			//String text = description.get("bodyText").asText();
-			//weatherEntity.setDescription(text);
+			String text = node.get("description").asText();
+			weatherEntity.setDescription(text);
 			
 			//resultsパラメータの抽出(配列分取得する)
 			for (JsonNode forecast : node.get("forecasts")) {
