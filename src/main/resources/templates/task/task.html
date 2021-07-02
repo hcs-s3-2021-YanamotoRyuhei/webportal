@@ -66,28 +66,35 @@
 	</nav>
 
 	<!-- コンテンツ -->
-	<h2>タスク管理</h2>
-	<hr>
-	<form method="post" th:action="@{/task/insert}">
-		<div class="input-group">
-			<input type="text" class="form-control" name="comment" placeholder="タスク内容"> 
-			<input type="date" class="form-control" name="limitday">
-			<span class="input-group-btn">
-				<button type="submit" class="btn btn-warning">追加</button>
-			</span>
+	<div class="container">
+		<div class="content-box">
+			<h2>タスク管理</h2>
+			<hr>
+			<form method="post" th:action="@{/task/insert}">
+				<div class="input-group">
+					<input type="text" class="form-control" name="comment"
+						placeholder="タスク内容"> <input type="date"
+						class="form-control" name="limitday"> <span
+						class="input-group-btn">
+						<button type="submit" class="btn btn-warning" onclick="checkTask()">追加</button>
+					</span>
+				</div>
+			</form>
+			<hr>
+
+			<ul th:each="task : ${taskEntity.taskList}">
+				<li><a th:href="@{'/task/delete/' + ${task.id} }"> <span
+						th:text="${task.comment}"></span>
+				</a> <span th:text="${task.limitday}"></span></li>
+			</ul>
+
+			<hr>
+
+			<form method="post" th:action="@{/task/csv}">
+				<button type="submit" class="btn btn-info">CSV出力</button>
+			</form>
 		</div>
-	</form>
-	<hr>
-	<ul th:each="task : ${taskEntity.taskList}">
-		<li><a th:href="@{'/task/delete/' + ${task.id} }"> <span
-				th:text="${task.comment}"></span>
-		</a> <span th:text="${task.limitday}"></span></li>
-	</ul>
-	<hr>
-	
-	<form method="post" th:action="@{/task/csv}">
-		<button type="submit" class="btn btn-info">CSV出力</button>
-	</form>
+	</div>
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -100,6 +107,16 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+		
+	<script>
+	function checkTask() {
+            var comment = document.getElementById("comment").value
+            var limitday = document.getElementById("limitday").value
+            if (postNumber == '' || postNumber.length != 7) {
+                alert('郵便番号が正しくありません')
+            }
+        }
+	</script>
 
 </body>
 </html>

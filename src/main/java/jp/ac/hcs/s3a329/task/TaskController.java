@@ -1,13 +1,20 @@
 package jp.ac.hcs.s3a329.task;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-//@Slf4j
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class TaskController {
 	@Autowired
@@ -23,9 +30,26 @@ public class TaskController {
 	public String getTask(Principal principal, Model model) {
 		String user_id = principal.getName();
 //		log.info(user_id);
-		TaskEntity taskEntity = taskService.getTask(user_id);
+		TaskEntity taskEntity = taskService.selectAll(user_id);
 		model.addAttribute("taskEntity",taskEntity);
 		return "task/task";
+		
+	}
+	
+	@PostMapping("/task/insert")
+	public String insertTask(@RequestParam("comment") String comment,
+							 @RequestParam("limitday") String limitday,
+							 Principal principal,Model model) throws ParseException {
+		String user_id = principal.getName();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = dateFormat.parse(limitday);
+		boolean isSuccess = taskService.insertOne(user_id,comment,date);
+		if(isSuccess) {
+			log.info("成功");
+		}else {
+			log.info("失敗");
+		}
+		return getTask(principal, model);
 		
 	}
 }
