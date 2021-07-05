@@ -1,5 +1,10 @@
 package jp.ac.hcs.s3a329.task;
 
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +28,14 @@ public class TaskService {
 		TaskEntity taskEntity = new TaskEntity();
 		try {
 			taskEntity = taskRepository.selectAll(user_id);
-		}catch (DataAccessException e) {
+		} catch (DataAccessException e) {
 			e.printStackTrace();
 			taskEntity = null;
 		}
 		return taskEntity;
 	}
-	
-	public boolean insertOne(String user_id,String comment, Date date) {
+
+	public boolean insertOne(String user_id, String comment, Date date) {
 		TaskData taskData = new TaskData();
 		try {
 			taskData.setUser_id(user_id);
@@ -39,10 +44,43 @@ public class TaskService {
 
 			taskRepository.insertOne(taskData);
 			return true;
-		}catch(DataAccessException e) {
+		} catch (DataAccessException e) {
 			e.printStackTrace();
 			return false;
 		}
-		
+
+	}
+
+	/**
+	 * タスク情報をCSVファイルとしてサーバに保存する.
+	 * 
+	 * @param user_id ユーザID
+	 * @throws DataAccessException
+	 */
+	public void taskListCsvOut(String user_id) throws DataAccessException {
+		taskRepository.tasklistCsvOut(user_id);
+	}
+
+	/**
+	 * サーバーに保存されているファイルを取得して、byte配列に変換する.
+	 * 
+	 * @param fileName ファイル名
+	 * @return ファイルのbyte配列
+	 * @throws IOException ファイル取得エラー
+	 */
+	public byte[] getFile(String fileName) throws IOException {
+		FileSystem fs = FileSystems.getDefault();
+		Path p = fs.getPath(fileName);
+		byte[] bytes = Files.readAllBytes(p);
+		return bytes;
+	}
+
+	public boolean deleteOne(int id) {
+		try {
+			taskRepository.deleteOne(id);
+		} catch (DataAccessException e) {
+			return false;
+		}
+		return true;
 	}
 }

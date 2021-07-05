@@ -69,6 +69,8 @@
 	<div class="container">
 		<div class="content-box">
 			<h2>タスク管理</h2>
+			<div class="alert alert-success" role="alert" th:text="${message}"></div>
+			<div class="alert alert-danger" role="alert" th:text="${errorMessage}"></div>
 			<hr>
 			<form method="post" th:action="@{/task/insert}">
 				<div class="input-group">
@@ -83,7 +85,7 @@
 			<hr>
 
 			<ul th:each="task : ${taskEntity.taskList}">
-				<li><a th:href="@{'/task/delete/' + ${task.id} }"> <span
+				<li><a th:href="@{'/task/delete/' + ${task.id} }" onclick="return deleteTask()"> <span
 						th:text="${task.comment}"></span>
 				</a> <span th:text="${task.limitday}"></span></li>
 			</ul>
@@ -116,6 +118,13 @@
                 alert('郵便番号が正しくありません')
             }
         }
+	function deleteTask(){
+		if(window.confirm('完了したタスクを削除します。よろしいですか？')){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	</script>
 
 </body>
