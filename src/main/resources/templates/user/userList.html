@@ -67,64 +67,31 @@
 
 	<!-- コンテンツ -->
 	<div class="container">
-		<div class="row">
-
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2 style="font-family: fantasy">住所検索 - 郵便番号</h2>
-					<form method="post" th:action="@{/zip}">
-						<div class="input-group">
-							<input type="number" id="post-number" class="form-control"
-								name="zipcode" placeholder="郵便番号 : XXXXXXX"> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-primary" onclick="check()">検索</button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2 style="font-family: fantasy">札幌の天気予報</h2>
-					<form method="post" th:action="@{/weather}">
-							<button type="submit" id="weather" class="btn btn-primary">もっと詳しく</button>
-					</form>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2 style="font-family: fantasy">直近のタスク</h2>
-					<form method="get" th:action="@{/task}">
-							<button type="submit"  class="btn btn-primary">タスク管理へ</button>
-					</form>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="content-box">
-					<h2 style="font-family: fantasy">飲食店検索-北海道</h2>
-					<form method="post" th:action="@{/gourmet}">
-						<div class="input-group">
-							<input type="text" name="gourmetName" class="form-control"
-								 placeholder="キーワードを入力"> <span
-								class="input-group-btn">
-								<button type="submit" class="btn btn-primary" >検索</button>
-							</span>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="col-sm-6" role="presentation" sec:authorize="hasRole('ADMIN')">
-				<!-- 管理者のみのコンテンツ -->
-				<div class="content-box">
-					<h2 style="font-family: fantasy">ユーザ管理</h2>
-					<form method="get" th:action="@{/user/list}">
-							<button type="submit"  class="btn btn-primary">ユーザ管理へ</button>
-					</form>
-				</div>
-			</div>
+		<div class="content-box">
+			<h2>ユーザ一覧</h2>
+			<hr> 
+			<table class="table">
+				<tr class="thead-dark">
+					<th>ユーザID</th>
+					<th>アカウント有効性</th>
+					<th>ユーザ名</th>
+					<th>ダークモード</th>
+					<th>権限</th>
+				</tr>
+				<tr class="table-light" th:each="userlist : ${userEntity.userlist}" th:object="${userlist}">
+					<td><span th:text="*{user_id}"></span></td>
+					<td><span th:text="*{enabled}"></span></td>
+					<td><span th:text="*{user_name}"></span></td>
+					<td><span th:text="*{darkmode}"></span></td>
+					<td><span th:text="*{role}"></span></td>
+				</tr>
+			</table> 
+			<hr>
+			<form method="get" th:action="@{/user/insert}">
+				<button type="submit" class="btn btn-info">作成</button>
+			</form>
 		</div>
 	</div>
-
 	<!-- 共通スクリプト -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -137,7 +104,8 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-	<script src="task.js"></script>
+		
 	
+
 </body>
 </html>

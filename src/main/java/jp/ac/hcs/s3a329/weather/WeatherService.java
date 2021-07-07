@@ -44,10 +44,10 @@ public class WeatherService {
 			ObjectMapper mapper = new ObjectMapper();
 			JsonNode node = mapper.readTree(json);
 			
-			//weatherEntity.getDescription().add(node.get("description"));
-			//JsonNode description = node.get("description");
-			String text = node.get("description").asText();
-			weatherEntity.setDescription(text);
+			JsonNode description = node.get("description");
+			weatherEntity.setDescription(description.get("headlineText").asText() 
+					+ description.get("bodyText").asText()
+					+ description.get("text").asText());
 			
 			//resultsパラメータの抽出(配列分取得する)
 			for (JsonNode forecast : node.get("forecasts")) {

@@ -22,9 +22,9 @@ public class GourmetController {
 	@PostMapping("/gourmet")
 	public String getZipCode(@RequestParam("gourmetName")String gourmetName,
 			Principal principal, Model model) {
+		String large_service_area="SS40";
 		
-		
-			ShopEntity shopEntity = gourmetService.getGourmet(gourmetName);
+			ShopEntity shopEntity = gourmetService.getGourmet(gourmetName,large_service_area);
 	
 		model.addAttribute("shopEntity",shopEntity);
 		return "gourmet/gourmet";

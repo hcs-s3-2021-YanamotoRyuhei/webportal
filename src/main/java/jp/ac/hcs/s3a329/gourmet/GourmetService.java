@@ -31,8 +31,8 @@ public class GourmetService {
 	 * @return ZipCodeEntity
 	 */
 	
-	public ShopEntity getGourmet(String name) {
-		String large_service_area ="SS40";
+	public ShopEntity getGourmet(String name,String large_service_area) {
+		
 		
 		//APIへアクセスして、結果を取得
 		String json = restTemplate.getForObject(URL, String.class, API_KEY, name,large_service_area);
