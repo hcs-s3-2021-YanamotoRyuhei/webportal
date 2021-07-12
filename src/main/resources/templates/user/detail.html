@@ -70,7 +70,7 @@
 	<div class="container">
 		<div class="content-box">
 			<h2>ユーザ詳細</h2>
-			<div class="alert alert-success" role="alert" th:text="${error}" id="errorMessage"></div>
+			
 			<div class="input-form">
 				<form method="post" th:action="@{/user/update}"
 					th:object="${userData}">
@@ -138,7 +138,7 @@
 	
 	function deleteUser(){
 		var user_id = document.getElementById("user_id");
-		if(window.confirm("user_id = " + user_id)){
+		if(window.confirm("ユーザ情報を削除します。よろしいですか？")){
 			return true;
 		}else{
 			return false;

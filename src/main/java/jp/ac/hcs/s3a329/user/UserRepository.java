@@ -58,7 +58,7 @@ public class UserRepository {
 	}
 
 	/**
-	 * UserテーブルからユーザIDをキーにデータを1件を取得.
+	 * UserテーブルからユーザIDをキーにデータを1件を取得
 	 * @param user_id 検索するユーザID
 	 * @return UserEntity
 	 * @throws DataAccessException
@@ -72,7 +72,7 @@ public class UserRepository {
 	}
 
 	/**
-	 * Userテーブルから取得したデータをUserEntity形式にマッピングする.
+	 * Userテーブルから取得したデータをUserEntity形式にマッピングする
 	 * @param resultList Userテーブルから取得したデータ
 	 * @return UserEntity
 	 */
@@ -92,7 +92,7 @@ public class UserRepository {
 	}
 
 	/**
-	 * Userテーブルにデータを1件追加する.
+	 * Userテーブルにデータを1件追加する
 	 * @param data 追加するユーザ情報
 	 * @return 追加データ数
 	 * @throws DataAccessException
@@ -109,7 +109,7 @@ public class UserRepository {
 	}
 
 	/**
-	 * (管理用)Userテーブルのデータを1件更新する(パスワード更新有).
+	 * (管理用)Userテーブルのデータを1件更新する(パスワード更新有)
 	 * @param data 更新するユーザ情報
 	 * @return 更新データ数
 	 * @throws DataAccessException
@@ -124,7 +124,7 @@ public class UserRepository {
 	}
 
 	/**
-	 * (管理用)Userテーブルのデータを1件更新する(パスワード更新無).
+	 * (管理用)Userテーブルのデータを1件更新する(パスワード更新無)
 	 * @param data 更新するユーザ情報
 	 * @return 更新データ数
 	 * @throws DataAccessException
