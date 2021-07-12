@@ -4,6 +4,9 @@ package jp.ac.hcs.s3a329.user;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.Data;
 
@@ -21,6 +24,9 @@ public class UserForm {
 	private String user_id;
 	
 	/**パスワード*/
+	@NotBlank(message = "{require_check}")
+	@Length(min = 4, max = 100, message="{length_check}")
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message="{pattern_check}")
 	private String password;
 	
 	/**ユーザ名*/
@@ -28,6 +34,7 @@ public class UserForm {
 	private String user_name;
 	
 	/**ダークモードフラグ*/
+	//@Pattern(regexp="^(true|false)$", message="{false_check}")
 	private boolean darkmode;
 	
 	/**権限*/

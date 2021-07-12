@@ -10,12 +10,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
- * タスク情報のデータを管理する
+ * タスクを管理する
  * -Taskテーブル
  */
 @Repository
 public class TaskRepository {
-    /** SQL全件取得（期限日昇順） */
+    /** SQL全件取得(期限日昇順)*/
     private static final String SQL_SELECT_ALL = "SELECT * FROM task WHERE user_id = ? order by limitday";
     
     /** SQL1件追加 */
@@ -47,28 +47,27 @@ public class TaskRepository {
      * 
      */
     private TaskEntity mappingSelectResult(List<Map<String, Object>> resultList) throws DataAccessException {
-        TaskEntity entity = new TaskEntity();
+        TaskEntity taskEntity = new TaskEntity();
         
         for (Map<String, Object> map : resultList) {
         	
             TaskData data = new TaskData();
+            
             data.setId((Integer) map.get("id"));
             data.setUser_id((String) map.get("user_id"));
             data.setComment((String) map.get("comment"));
             data.setLimitday((Date) map.get("limitday"));
             
-            entity.getTaskList().add(data);
+            taskEntity.getTaskList().add(data);
         }
-        return entity;
+        return taskEntity;
     }
     
     /**
-     * 
      * Taskテーブルにデータを1件追加する
      * @param data 追加するユーザ情報
      * @return 追加データ数
      * @throws DataAccessException
-     * 
      */
     public int insertOne(TaskData data) throws DataAccessException {
         int rowNumber = jdbc.update(SQL_INSERT_ONE,
@@ -79,12 +78,10 @@ public class TaskRepository {
     }
     
     /**
-     * 
      * Taskテーブルのデータを1件削除する
      * @param id 削除するタスクID
      * @return 削除データ数
      * @throws DataAccessException
-     * 
      */
     public int deleteOne(int id) throws DataAccessException {
         int rowName = jdbc.update(SQL_DELETE_ONE, id);
@@ -92,7 +89,7 @@ public class TaskRepository {
     }
     
     /**
-	 * TaskテーブルからユーザIDをキーにデータを全件取得し、CSVファイルとしてサーバに保存する.
+	 * TaskテーブルからユーザIDをキーにデータを取得して、CSVファイルを保存する
 	 * @param user_id 検索するユーザID
 	 * @throws DataAccessException
 	 */

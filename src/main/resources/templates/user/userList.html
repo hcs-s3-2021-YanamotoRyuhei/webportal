@@ -41,7 +41,7 @@
 <body th:classappend="${session.isDarkmode} ? 'mode-dark'">
 
 	<!-- 共通ヘッダ -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
 		<h1>
 			<a class="navbar-brand title-font" th:href="@{/}">WebPortal.com</a>
 		</h1>
@@ -77,6 +77,7 @@
 					<th>ユーザ名</th>
 					<th>ダークモード</th>
 					<th>権限</th>
+					<th></th>
 				</tr>
 				<tr class="table-light" th:each="userlist : ${userEntity.userlist}" th:object="${userlist}">
 					<td><span th:text="*{user_id}"></span></td>
@@ -84,6 +85,7 @@
 					<td><span th:text="*{user_name}"></span></td>
 					<td><span th:text="*{darkmode}"></span></td>
 					<td><span th:text="*{role}"></span></td>
+					<td><a class="btn btn-success" th:href="@{'/user/detail/' + *{user_id}}">詳細</a></td>
 				</tr>
 			</table> 
 			<hr>
@@ -104,7 +106,18 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
-		
+	<script>
+	
+	//var errorMessage = document.getElementById("errorMessage");
+	//window.confirm("errorMessage = " + errorMessage)
+	//if(document.getElementById("errorMessage" ) = ""){
+		// noneで非表示
+	//	errorMessage.style.display ="none";
+	//}else{
+		// blockで表示
+	//	errorMessage.style.display ="block";
+	//}
+	</script>
 	
 
 </body>

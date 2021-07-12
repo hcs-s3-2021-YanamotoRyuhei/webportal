@@ -21,15 +21,12 @@ public class TaskRowCallbackHandler implements RowCallbackHandler {
 	public void processRow(ResultSet rs) throws SQLException {
 
 		try {
-
 			File directory = new File(WebConfig.OUTPUT_PATH);
 			if (!directory.exists()) {
 				directory.mkdir();
 			}
-
 			File file = new File(WebConfig.OUTPUT_PATH + WebConfig.FILENAME_TASK_CSV);
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-
 			BufferedWriter bw = new BufferedWriter(fw);
 			do {
 				// Taskテーブルのデータ構造

@@ -3,7 +3,7 @@ package jp.ac.hcs.s3a329.gourmet;
 import lombok.Data;
 
 /*
- * 1件分の郵便番号情報
+ * 1件分の店舗情報
  */
 @Data
 public class ShopData {

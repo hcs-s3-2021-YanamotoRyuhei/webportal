@@ -12,11 +12,10 @@ public class WeatherController {
 	@Autowired
 	private WeatherService weatherService;
 	/**
-	 * 郵便番号から住所を検索し、結果画面を表示する
-	 * @param weather 検索する郵便番号(ハイフン無し)
+	 * 札幌の天気予報を検索し、結果画面を表示する
 	 * @param prinicipal ログイン情報
 	 * @param model
-	 * @return 結果画面 - 郵便番号
+	 * @return 結果画面 - 天気予報画面
 	 */
 	@PostMapping("/weather")
 	public String postWeather(Principal principal, Model model) {

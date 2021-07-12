@@ -13,11 +13,11 @@ public class GourmetController {
 	@Autowired
 	private GourmetService gourmetService;
 	/**
-	 * 郵便番号から住所を検索し、結果画面を表示する
-	 * @param zipcode 検索する郵便番号(ハイフン無し)
+	 * キーワードから飲食店を検索し、結果画面を表示する
+	 * @param gourmetName 検索するキーワード
 	 * @param prinicipal ログイン情報
 	 * @param model
-	 * @return 結果画面 - 郵便番号
+	 * @return 結果画面 - 店一覧
 	 */
 	@PostMapping("/gourmet")
 	public String getZipCode(@RequestParam("gourmetName")String gourmetName,

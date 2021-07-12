@@ -6,10 +6,10 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * 郵便番号情報検索結果の店舗情報
+ * キーワード検索結果の店舗情報
  * 各項目のデータ使用については、APIの使用を参照とする
- * 1つの郵便番号に複数の住所が紐づくこともあるため、リスト構造となっている
- * -http://zipcloud.ibsnet.co.jp/doc/api
+ * 1つのキーワードで複数店舗が返ってくるため、リスト構造となっている
+ * -http://webservice.recruit.co.jp
  *
  */
 @Data

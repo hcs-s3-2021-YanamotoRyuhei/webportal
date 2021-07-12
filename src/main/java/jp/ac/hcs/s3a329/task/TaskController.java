@@ -26,11 +26,10 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 	/**
-	 * 郵便番号から住所を検索し、結果画面を表示する
-	 * @param weather 検索する郵便番号(ハイフン無し)
+	 * データベースからタスク一覧を検索し、結果画面を表示する
 	 * @param prinicipal ログイン情報
 	 * @param model
-	 * @return 結果画面 - 郵便番号
+	 * @return 結果画面 - タスク一覧
 	 */
 	@GetMapping("/task")
 	public String getTask(Principal principal, Model model) {
@@ -41,7 +40,15 @@ public class TaskController {
 		return "task/task";
 		
 	}
-	
+	/**
+	 * タスクを追加する
+	 * @param comment コメント
+	 * @param limitday 期限日
+	 * @param principal ログイン情報
+	 * @param model
+	 * @return タスク一覧
+	 * @throws ParseException
+	 */
 	@PostMapping("/task/insert")
 	public String insertTask(@RequestParam("comment") String comment,
 							 @RequestParam("limitday") String limitday,
@@ -93,6 +100,14 @@ public class TaskController {
 		// CSVファイルを端末へ送信
 		return new ResponseEntity<byte[]>(bytes, header, HttpStatus.OK);
 	}
+	
+	/**
+	 * タスクの削除を行う
+	 * @param id タスクID
+	 * @param principal ログイン情報
+	 * @param model
+	 * @return タスク一覧
+	 */
 	
 	@GetMapping("/task/delete/{id}")
 	public String deleteTask(@PathVariable int id, Principal principal,Model model) {

@@ -11,9 +11,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * 郵便番号情報を操作する
- * zipcloud社の郵便番号検索APIを活用する
- *-http://zipcloud.ibsnet.co.jp/doc/api
+ * グルメ検索機能を操作する
+ * ホットペッパーの店検索APIを活用する
+ *-http://webservice.recruit.co.jp
  */
 @Transactional
 @Service
@@ -26,9 +26,10 @@ public class GourmetService {
 	/**APIキー*/
 	private static final String API_KEY ="d75af4121e42c5ec";
 	/**
-	 * 指定した郵便番号に紐づく郵便番号情報を取得する
-	 * @param zipcode 郵便番号(7桁、ハイフン無し)
-	 * @return ZipCodeEntity
+	 * 指定したキーワードに紐づく店舗情報を取得する
+	 * @param name キーワード
+	 * @param large_service_area エリア指定
+	 * @return shopEntity
 	 */
 	
 	public ShopEntity getGourmet(String name,String large_service_area) {
